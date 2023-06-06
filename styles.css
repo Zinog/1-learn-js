@@ -1,0 +1,23 @@
+.wrapper {
+    margin: 0;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    width: 250px;
+    gap: 0 10px;
+    
+}
+
+.column_one {
+    grid-column: 1/1;
+    list-style: none;
+    padding: 10px 10px;
+    border-bottom: 1px solid #000;
+}
+
+.column_too {
+    grid-column: 2/3;
+    list-style: none;
+    padding: 10px 5px;
+    border-bottom: 1px solid #000;
+}
