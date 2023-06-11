@@ -14,12 +14,13 @@ console.log('NEGATIVE_INFINITY', Number.NEGATIVE_INFINITY)
 
 const stringInt = '40'
 const stringFloat = '40.42'
+console.log(parseInt(stringInt)) // перевод строк в числа
 console.log(Number.parseInt(stringInt) + 2)  // одинаковые значения с разным написанием
 console.log(parseInt(stringInt) + 2)
 console.log(Number(stringInt) + 2)
 console.log(+stringInt + 2)
 
-console.log(parseFloat(stringFloat) +2)
+console.log(parseFloat(stringFloat) +2) // возвращает десятичное число
 console.log(+stringFloat + 2)
 
 console.log(+(0.4+0.2).toFixed(1)) // toFixed сокращает кол-во знаков после запятой
@@ -52,3 +53,4 @@ function getRandomBetween(min, max) {
 }
 
 console.log(getRandomBetween(10, 42))
+
