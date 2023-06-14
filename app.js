@@ -115,14 +115,12 @@ let calculateSalary = function (dirtySalary) {
 * true, если строка меньше или равна указанной длине
 * false, если строка длиннее.
 */
-  const GET_STRING_LENGHT = (testString, stringLength) => {
-    if (testString.length <=  stringLength) {
-       return true;
-        }
-         if (testString.length > stringLength) {
-          return false;
-        }
-    }
+const GET_STRING_LENGHT = (testString, stringLength) => {
+  if (testString.length > stringLength) {
+    return false;
+  }
+  return true;
+};
 
 
 /** Функция для проверки, является ли строка палиндромом.
@@ -140,6 +138,37 @@ const CHECK_PALINDROM = (palindrome) => {
 
 CHECK_PALINDROM('привет');
 CHECK_PALINDROM('Лёша на полке клопа нашёл');
+
+//или 
+
+function isPalindrome(string) {
+  string = string.toLowerCase().replaceAll(' ','');
+  let newString = '';
+  for (let i = string.length - 1; i >= 0; --i) {
+    newString += string[i];
+  } if (newString === string) {
+    return true;
+  }
+  return false;
+}
+isPalindrome('Лёша на полке клопа нашёл ');
+
+//или 
+
+const checkPalindrome = function (palindrome) {
+  const textClean = palindrome.toLowerCase().replaceAll(' ', '');
+  const lastIndex = textClean.length - 1;
+
+  for (let i = 0; i <= textClean.length / 2; i++) {
+    if (textClean[i] !== textClean[lastIndex - i]) {
+      return 'Не палиндром!';
+    }
+
+    return 'Палиндром!';
+  }
+};
+
+console.log(checkPalindrome('У тени или мафии фамилии нетУ'));
 
 /* Техническое задание
 Мяу! Напиши программу, которая будет определять возрастную группу по возрасту.
@@ -172,4 +201,118 @@ function getAgeGroup(age) {
   if (age <= 7) return 'Коты средних лет'
   return 'Почтенные коты'
 }
+
+/* Техническое задание
+Мяу! Запрограммируй умные весы, чтобы они давали рекомендации в зависимости от веса.
+Вес записан в переменную weight.
+Рекомендацию записывай строкой в переменную recommendation.
+Если вес до 4 кг (не включая это значение), рекомендация – 'Пора перекусить'.
+Если вес от 4 кг включительно до 5.5 кг включительно – 'Вес в норме'.
+Если вес больше 5.5 кг – 'Пора на тренировку'.
+*/
+let weight = 5;
+let recommendation;
+
+if (weight > 0 && weight < 4) recommendation = 'Пора перекусить'
+if (weight >= 4 && weight <= 5.5) recommendation = 'Вес в норме'
+if (weight > 5.5 ) recommendation = 'Пора на тренировку'
+
+//или 
+function getRecommendation(weight) {
+  if (age < 4) return 'Пора перекусить'
+  if (age <= 5.5) return 'Вес в норме'
+   return 'Пора на тренировку'
+}
+
+/* Техническое задание
+Программа должна анализировать числа.
+Если число делится на 3, результат работы программы — строка 'Fizz'.
+Если число делится на 5 — строка 'Buzz'.
+Если число одновременно делится на 3 и на 5 — результат 'FizzBuzz'.
+В остальных случаях результат работы программы — изначальное число.
+Число записано в переменную number.
+Результат работы программы записывайте в переменную taskResult.
+*/
+
+let number = 15;
+let taskResult;
+
+
+if (number % 3 === 0) {
+  taskResult = 'Fizz';
+}  else {
+  taskResult = number; 
+  }
+if (number % 5 === 0) {
+  taskResult = 'Buzz';
+}
+if ((number % 3 === 0) && (number % 5 === 0)) { taskResult = 'FizzBuzz';
+}
+
+
+/* Техническое задание
+Напишите универсальную программу, которая вычисляет сумму чисел от 1 до n.
+Число, до которого нужно складывать числа (включительно), указано в переменной lastNumber.
+Найдите сумму всех чисел и сохраните результат в переменную sum.
+*/
+
+let lastNumber = 10;
+let sum = 0;
+
+for (let i = 1; i <= lastNumber; i++) {
+sum = lastNumber * (lastNumber + 1) / 2;
     
+  console.log(sum);
+}
+
+/*Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает 
+их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN:*/
+
+function getNumber(str) { // бурум строку
+  let newNum = ''; // создаем переменную троку
+  for (let i = 0; i< str.length; i++) { //перебираем строку
+      let num = parseInt(str[i]); // приводим каждый символ к числу
+      if (Number.isNaN(num) === false ) { // проверяем на NaN
+          newNum += num; // вписываем переменную если это число
+      } 
+  }
+  return !newNum ? NaN : +newNum;  // возвращаем переменную 
+}
+console.log(getNumber('ECMAScript 2022'))
+
+/* Техническое задание
+Мяу! Напиши программу для определения типа транспорта на велосипедной парковке.
+Оформи решение в виде функции checkVehicle с двумя параметрами: количество колёс 
+у транспорта и вес этого транспорта. Названия параметров могут быть любыми.
+Если колеса два и вес транспорта меньше 100 кг, это велосипед. Функция должна 
+возвращать строку 'Парковка разрешена'.
+В остальных случаях функция должна возвращать строку 'Вам здесь не место! Мяу!'.
+*/
+
+let checkVehicle = (quantity, weight) => {
+  if (quantity === 2 && weight < 100) {
+    return 'Парковка разрешена';
+    }     return 'Вам здесь не место! Мяу!';
+  }
+
+  /* Техническое задание
+Мяу! Я научился шифровать и мне нужна программа расшифровки.
+Есть массив symbols, в котором хранится алфавит (буквы и другие символы).
+Есть массив encodedSymbols, в котором хранится зашифрованное сообщение. 
+Каждый элемент этого массива — это индекс символа из массива symbols.
+Программа дешифровки должна переводить элементы из массива с шифровкой 
+(encodedSymbols) в символы из массива алфавита (symbols) и склеивать из них расшифрованную строку. 
+Эту строку запиши в переменную decodedMessage.
+*/
+// Алфавит
+let symbols = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ', '.', ',', '—', '!'];
+
+// Закодированное сообщение
+let encodedSymbols = [18, 38, 46, 62, 66, 50, 33, 41, 66, 49, 48, 38, 58, 62, 68, 66, 48, 37, 42, 47, 66, 50, 33, 41, 66, 49, 48, 51, 49, 42, 67];
+
+// Раскодированное сообщение
+let decodedMessage = '';
+
+for (let i = 0; i < encodedSymbols.length; i++) {
+decodedMessage += symbols[encodedSymbols[i]];
+};
