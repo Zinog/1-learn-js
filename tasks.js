@@ -13,7 +13,6 @@
 /**
  * @typedef {Player & PlayerStatistic} PlayerWithStatistic игрок с примешанной статистикой
  */
-
 function getStatistics(players) {
     let sumGoals = 0; //всех игроков 
  for (let i = 0; i < players.length; i++) {
@@ -222,3 +221,86 @@ console.log(Array.from({length: 25}, photoPostedByUser));
 /*const createPhotoArray = Array.from({length: 25}, photoPostedByUser);
 // eslint-disable-next-line no-console
 console.log(createPhotoArray);*/
+
+/*Напишите функцию, которая принимает время начала и конца рабочего дня,
+ а также время старта и продолжительность встречи в минутах и возвращает true,
+  если встреча не выходит за рамки рабочего дня, и false, если выходит.*/
+//больше строк  
+ causeTime = (startDay, endDay, startMeeting, timeMeeting) => {
+  let start = startDay.replace(":", ".");
+  let end = endDay.replace(":", ".");
+  let meeting = startMeeting.replace(":", ".");
+
+  let endMeeting = parseFloat(meeting) + (timeMeeting / 60);
+
+  if (endMeeting <= parseFloat(end) && meeting >= parseFloat(start)) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log(causeTime('08:00', '17:30', '14:00', 90));
+console.log(causeTime('8:0', '10:0', '8:0', 120));
+console.log(causeTime('08:00', '14:30', '14:00', 90));
+console.log(causeTime('14:00', '17:30', '08:0', 90));
+console.log(causeTime('8:00', '17:30', '08:00', 900))
+//тоже самое, но меньше строк
+
+
+/**
+ * Проверка попадания встречи в рамки рабочего дня
+ * @param {string} startDay — старт рабочего дня в формате"HH:MM"
+ * @param {string} endDay — конец рабочего дня в формате"HH:MM"
+ * @param {string} startMeeting — начало встречи в формате"HH:MM"
+ * @param {number} timeMeeting - время встречи в минутах
+ * @return {boolean} — true, если попадает, либо false
+ */
+const causeTime = (startDay, endDay, startMeeting, timeMeeting) => {
+  let endMeeting = parseFloat(startMeeting) + (timeMeeting / 60);
+
+  if (endMeeting <= parseFloat(endDay.replace(":", ".")) && startMeeting.replace(":", ".") >= parseFloat(startDay.replace(":", "."))) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log(causeTime('08:00', '17:30', '14:00', 90));
+console.log(causeTime('8:0', '10:0', '8:0', 120));
+console.log(causeTime('08:00', '14:30', '14:00', 90));
+console.log(causeTime('14:00', '17:30', '08:0', 90));
+console.log(causeTime('8:00', '17:30', '08:00', 900))
+
+//создание фалов js
+/*
+1) data.js - мы переименновываем main.js
+2) пишем в начале докумета
+    import {getRandomInteger} from './util.js';
+    import {getRandomArrayElement} from './util.js';
+    import {getIdGenerator} from './util.js';
+  в конце докумета
+    export {getPhotoPostedByUser};
+3) удаляем 
+    Генерация случайных чисел
+    генерация случайного элемента массива
+    Генерация порядкого номера
+
+4) function.js добавить функцию causeTime
+
+5) main.js создаем и подключаем в индексе с  <script src="js/main.js" type="module"></script>
+6) пишем
+  import {getPhotoPostedByUser} from './data.js';
+  import './function.js';
+
+  // eslint-disable-next-line no-console
+  console.log(getPhotoPostedByUser());
+7) util.js создаем файл 
+8) переносим 
+    Генерация случайных чисел
+    генерация случайного элемента массива
+    Генерация порядкого номера
+  в конце документа пишем
+    export {getRandomInteger};
+    export {getRandomArrayElement};
+    export {getIdGenerator};
+
+*/
